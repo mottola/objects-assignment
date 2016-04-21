@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OOP</title>
+</head>
+
+<body>
+    <h1>Introduction to Object Oriented Programming!</h1>
+    <small>Instructions are  in the code! How exciting!</small>
+    <div id="paragraphs"></div>
+    <script>
+        // Finish the Following constructor
+        function Sentence(wordsArray) {
+            this.wordsArray = wordsArray;
+
+
+            this.getWordCount = function () { // doesn't need param bcz in constructor
+                return this.wordsArray.length;
+                //find the amount of words in the sentence
+            }
+
+            this.getLetterCount = function () {
+                var letterCount = 0;
+                for (var j = 0; j < this.wordsArray.length; j++) {
+                    letterCount += this.wordsArray[j].length + 1;
+                }
+                return letterCount - 1;
+                //find the amount of letters in the sentence
+            }
+
+            this.getWordAt = function (i) {
+                //return the word at index i
+                return this.wordsArray[i];
+            }
+
+
+            this.reverse = function () {
+                this.wordsArray.reverse();
+            }
+        }
+
+        function Paragragh(sentenceArray) {
+            this.sentenceArray = sentenceArray;
+
+            this.getWordCount = function () {
+                var wordCount = 0;
+                for (var i = 0; i < this.sentenceArray.length; i++) {
+                    wordCount += this.sentenceArray[i].getWordCount();
+                }
+                return wordCount;
+
+            }
+            this.getLetterCount = function () {
+                var letterCount = 0;
+                for (i = 0; i < this.sentenceArray.length; i++) {
+                    letterCount += this.sentenceArray[i].getLetterCount();
+                }
+                console.log(letterCount);
+                return letterCount;
+            }
+            this.getWordAt = function (i) {
+                wordAt = "";
+                for (var j = 0; j < this.sentenceArray[j]; j++) {
+                    wordAt += this.sentenceArray
+                }
+                console.log(this.sentenceArray[i]);
+                return this.sentenceArray[i];
+            }
+        }
+
+
+        /* Some Tests. Make them all pass! */
+
+        var s = new Sentence(["Hello", "I", "Am", "Computer"]);
+
+        console.log(s.getWordCount() == 4);
+        console.log(s.getLetterCount() == 19); //remember spaces!
+        console.log(s.getWordAt(0) == "Hello");
+        s.reverse();
+        console.log(s.getWordAt(0) == "Computer");
+
+        var s2 = new Sentence(["I", "am", "not", "human"]);
+        console.log(s2.getWordCount() == 4);
+
+
+        //		 Create a new constructor function for a Paragraph
+        var p = new Paragragh([s, s2]);
+        console.log(p.getWordCount() == 8);
+        console.log(p.getLetterCount() == 33);
+        p.getWordAt(6);
+        //        p.getSentenceCount()
+        //        p.addToHTML("paragraphs") * /
+    </script>
+</body>
+
+</html>
