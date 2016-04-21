@@ -36,6 +36,10 @@
             this.reverse = function () {
                 wordsArray.reverse();
             }
+
+            this.getAllWords = function () {
+                return wordsArray.slice(); // returns a COPY of words array \\
+            }
         }
 
         function Paragragh(sentenceArray) {
@@ -57,10 +61,17 @@
             this.getWordAt = function (index) {
                 var allWords = [];
                 for (var s = 0; s < sentenceArray.length; s++) {
-                    allWords = allWords.concat(sentenceArray[s].getWordAt());
+                    allWords = allWords.concat(sentenceArray[s].getAllWords());
                 }
                 console.log(allWords[index]);
                 return allWords[index];
+            }
+            this.getSentenceCount = function () {
+                return sentenceArray.length;
+            }
+
+            this.addToHTML = function (id) {
+                return document.getElementById(id).innerHTML = '<p>' + sentenceArray + '</p>';
             }
         }
 
@@ -81,8 +92,8 @@
         console.log(p.getWordCount() == 8);
         console.log(p.getLetterCount() == 33);
         p.getWordAt(6);
-        //        p.getSentenceCount()
-        //        p.addToHTML("paragraphs") * /
+        p.getSentenceCount();
+        p.addToHTML("paragraphs");
     </script>
 </body>
 
